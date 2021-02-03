@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthenticatedSessionController extends Controller
 {
+
+
+    public function showLoginForm()
+    {
+        return view('auth.app-auth.login');
+    }
+
+    
     /**
      * Display the login view.
      *
