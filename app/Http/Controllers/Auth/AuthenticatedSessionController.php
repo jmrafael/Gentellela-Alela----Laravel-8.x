@@ -10,14 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthenticatedSessionController extends Controller
 {
-
-
-    public function showLoginForm()
-    {
-        return view('auth.app-auth.login');
-    }
-
-    
     /**
      * Display the login view.
      *
@@ -52,6 +44,17 @@ class AuthenticatedSessionController extends Controller
     public function destroy(Request $request)
     {
         Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
 
         $request->session()->invalidate();
 
